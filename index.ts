@@ -1,15 +1,16 @@
-import bodyParser from "body-parser";
 import Server from "./classes/server";
 import router from "./routes/router";
+import bodyParser from "body-parser";
 import cors from 'cors'
-const server = new Server();
+const server =  Server.instance;
 
 // BodyParser
 server.app.use( bodyParser.urlencoded({ extended: true}));
 server.app.use( bodyParser.json() );
 
-// CORS
+// CORS: Permite que personas externas al dominio accedar al servicio
 server.app.use( cors({origin:true, credentials: true}))
+
 
 // Rutas de servicios
 server.app.use('/',router)
